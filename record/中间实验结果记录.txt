@@ -1,0 +1,38 @@
+结果记录：
+
+cout<< "data of depthMap..."<<endl;
+        for(int x=50;x<450;x+=50)
+        {
+            for(int y=50;y<600;y+=50)
+                cout<<depthMap.ptr<float>(x)[y]<<endl;
+        }
+
+        cout<< "depthMap_8UC1..."<<endl;
+        for(int x=50;x<450;x+=50)
+        {
+            for(int y=50;y<600;y+=50)
+                cout<<static_cast<int>(depthMap_8UC1.ptr<uchar>(x)[y])<<endl;
+        }
+
+
+        cout<< "data of disparity_image_32F..."<<endl;
+        for(int x=50;x<450;x+=50)
+        {
+            for(int y=50;y<600;y+=50)
+                cout<<disparity_image_32F.ptr<float>(x)[y]<<endl;
+        }
+
+        cout<< "data of disparity_image_32F..."<<endl;
+        for(int x=50;x<450;x+=50)
+        {
+            for(int y=50;y<600;y+=50)
+                cout<<static_cast<int>(disparity_image_8UC1.ptr<uchar>(x)[y])<<endl;
+        }
+
+立体矫正后的参数：
+Pl[346.9545595469939, 0, 314.8745994567871, 0;
+ 0, 346.9545595469939, 239.016544342041, 0;
+ 0, 0, 1, 0]
+Pr[346.9545595469939, 0, 314.8745994567871, -68.11613786776297;
+ 0, 346.9545595469939, 239.016544342041, 0;
+ 0, 0, 1, 0]

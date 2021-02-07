@@ -1,0 +1,37 @@
+1. 输入相机内参+基线长度（mm）
+2. 调整视差转深度函数
+3. 调用函数，输出图像
+4. 图像保存
+
+1. cv::Mat disparity_image;	没指定位数
+2. SemiGlobalMatching           在其中计算
+	float* dispImageFloat = (float*)malloc(width*height*sizeof(float));	填充的是float 32位 2^5
+	dispImage = utilities.convertFloatToCVMat(width, height, dispImageFloat);	将float转换到CVMat
+		其中(ushort)(data[width*y + x] * 256.0f + 0.5);		将float×256并且将其转为 ushort 16位————————只有这一次缩放
+3. 直接将 ushort 16位 保存为图像
+
+
+4. 误差计算时：disparity_image / SCALING_FACTOR; 将所有数据/256
+
+
+
+————————————————————————————————————————————————————————————————————————
+要计算深度图：
+1. 使用原始数据，将所有数据/SCALING_FACTOR; 这时，可以用float格式进行数据计算 （可以用CV_8UC1，但是先对数据进行处理）
+									   （也可以先用CV_16UC1（最大65536）  最远25159（实际这么远应该没用））
+2. 计算完成后观察数据情况在决定是否将深度数据进行缩放
+
+
+
+
+
+
+
+
+_____________________________
+图像分布
+/home/cbreezy/stereo_sparse_depth_fusion/results/depth_32F.png
+depthMap8U.jpg
+sgm_default.png
+depthMap8U.png
+depth_32F.png
